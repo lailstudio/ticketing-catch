@@ -37,6 +37,16 @@ generate_page() {
   local h1_text="$4"
   local body_text="$5"
 
+  local canonical_path="$page_path"
+  if [ "$page_path" = "/_home" ]; then
+    canonical_path="/"
+  fi
+
+  local breadcrumb_html=""
+  if [ "$page_path" != "/_home" ]; then
+    breadcrumb_html="<div class=\"seo-breadcrumb\"><a href=\"/\">홈</a> &gt; ${h1_text}</div>"
+  fi
+
   local dir="$BUILD_DIR${page_path}"
   mkdir -p "$dir"
 
@@ -49,11 +59,11 @@ generate_page() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${page_title}</title>
   <meta name="description" content="${meta_desc}">
-  <link rel="canonical" href="${SITE_URL}${page_path}">
+  <link rel="canonical" href="${SITE_URL}${canonical_path}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${page_title}">
   <meta property="og:description" content="${meta_desc}">
-  <meta property="og:url" content="${SITE_URL}${page_path}">
+  <meta property="og:url" content="${SITE_URL}${canonical_path}">
   <meta property="og:site_name" content="티켓팅캐치">
   <meta property="og:image" content="${SITE_URL}/ticketingcatch-og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -113,7 +123,7 @@ generate_page() {
       </nav>
     </div>
     <div class="seo-hero">
-      <div class="seo-breadcrumb"><a href="/">홈</a> &gt; ${h1_text}</div>
+      ${breadcrumb_html}
       <h1>${h1_text}</h1>
       <p>${body_text}</p>
     </div>
@@ -153,5 +163,12 @@ generate_page \
   "티켓팅에서 빈 좌석을 빠르게 찾아 클릭하는 연습입니다. 랜덤 좌석 중 선택 가능한 좌석을 찾아 반복 클릭하며 탐색 속도와 정확도를 높이세요." \
   "포도알 연습" \
   "티켓팅에서 빈 좌석을 빠르게 찾아 클릭하는 연습입니다. 랜덤 좌석 중 선택 가능한 좌석을 찾아 반복 클릭하며 탐색 속도와 정확도를 높이세요."
+
+generate_page \
+  "/_home" \
+  "티켓팅캐치 | 실전 티켓팅 · 좌석 집중 연습" \
+  "실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 배치 기반 연습." \
+  "티켓팅캐치" \
+  "실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 구조를 참고한 연습."
 
 echo "SEO pages generation complete."

@@ -6,6 +6,7 @@ import '../models/practice_config.dart';
 import '../screens/grape_drill_screen.dart';
 import '../screens/queue_screen.dart';
 import '../screens/venue_map_screen.dart';
+import '../services/embedded_mode.dart';
 import '../services/seo_service.dart';
 import '../services/time_tracker.dart';
 import '../widgets/ad_slot.dart';
@@ -72,6 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
 
+    final embedded = isEmbeddedMode;
+
     return Title(
       title: '티켓팅캐치 | 실전 티켓팅 · 좌석 집중 연습',
       color: Theme.of(context).colorScheme.primary,
@@ -83,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  const SiteHeader(),
-                  _buildHero(context, screenWidth),
+                  if (!embedded) const SiteHeader(),
+                  _buildHero(context, screenWidth, embedded),
                 _buildPracticeModeCards(context, screenWidth),
                 _buildVenueGrid(context, screenWidth),
                 if (AdSlot.adsEnabled) Padding(
@@ -94,9 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: const AdSlot(slotId: 'home-bottom'),
                 ),
-                _buildSeoSection(screenWidth),
-                const SizedBox(height: 8),
-                const SeoFooter(),
+                if (!embedded) _buildSeoSection(screenWidth),
+                if (!embedded) const SizedBox(height: 8),
+                if (!embedded) const SeoFooter(),
               ],
             ),
           );
@@ -106,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildHero(BuildContext context, double screenWidth) {
+  Widget _buildHero(BuildContext context, double screenWidth, bool embedded) {
     final isWide = screenWidth > 800;
 
     final textColumn = Column(
@@ -114,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
           isWide ? CrossAxisAlignment.start : CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
+        if (!embedded) Text(
           '티켓팅캐치',
           textAlign: isWide ? TextAlign.start : TextAlign.center,
           style: TextStyle(
@@ -124,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
             letterSpacing: 0.5,
           ),
         ),
-        SizedBox(height: isWide ? 4 : 2),
+        if (!embedded) SizedBox(height: isWide ? 4 : 2),
         Semantics(
           header: true,
           child: Text.rich(
@@ -157,8 +160,8 @@ class _HomeScreenState extends State<HomeScreen> {
             textAlign: isWide ? TextAlign.start : TextAlign.center,
           ),
         ),
-        SizedBox(height: isWide ? 8 : 4),
-        Text(
+        if (!embedded) SizedBox(height: isWide ? 8 : 4),
+        if (!embedded) Text(
           '정각 진입부터 좌석 선택까지, 실전처럼 연습하세요',
           textAlign: isWide ? TextAlign.start : TextAlign.center,
           style: TextStyle(

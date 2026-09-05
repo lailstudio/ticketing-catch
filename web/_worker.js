@@ -158,7 +158,11 @@ function injectSeo(html, seo) {
   return result;
 }
 
-const STATIC_HTML_PAGES = ['/practice', '/grape-practice'];
+const STATIC_HTML_PAGES = {
+  '/': '/_home/index.html',
+  '/practice': '/practice/index.html',
+  '/grape-practice': '/grape-practice/index.html',
+};
 
 function hasFileExtension(pathname) {
   const lastSegment = pathname.split('/').pop();
@@ -181,8 +185,9 @@ export default {
     }
 
     const normalized = normalizePathname(pathname);
-    if (STATIC_HTML_PAGES.includes(normalized)) {
-      const staticUrl = new URL(`${normalized}/index.html`, request.url);
+    const staticPath = STATIC_HTML_PAGES[normalized];
+    if (staticPath) {
+      const staticUrl = new URL(staticPath, request.url);
       const staticRequest = new Request(staticUrl, {
         method: request.method,
         headers: request.headers,
