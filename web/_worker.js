@@ -158,9 +158,17 @@ function injectSeo(html, seo) {
   return result;
 }
 
+const STATIC_HTML_PAGES = ['/practice', '/grape-practice'];
+
 function hasFileExtension(pathname) {
   const lastSegment = pathname.split('/').pop();
   return lastSegment && lastSegment.includes('.') && !lastSegment.startsWith('.');
+}
+
+function normalizePathname(pathname) {
+  return pathname.endsWith('/') && pathname !== '/'
+    ? pathname.slice(0, -1)
+    : pathname;
 }
 
 export default {
@@ -170,6 +178,19 @@ export default {
 
     if (hasFileExtension(pathname)) {
       const response = await env.ASSETS.fetch(request);
+      if (response.ok) {
+        return response;
+      }
+    }
+
+    const normalized = normalizePathname(pathname);
+    if (STATIC_HTML_PAGES.includes(normalized)) {
+      const staticUrl = new URL(`${normalized}/index.html`, request.url);
+      const staticRequest = new Request(staticUrl, {
+        method: request.method,
+        headers: request.headers,
+      });
+      const response = await env.ASSETS.fetch(staticRequest);
       if (response.ok) {
         return response;
       }

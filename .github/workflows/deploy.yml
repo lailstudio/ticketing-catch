@@ -22,6 +22,8 @@ jobs:
 
       - run: flutter build web --release --base-href=/
 
+      - run: chmod +x scripts/generate_seo_pages.sh && ./scripts/generate_seo_pages.sh
+
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

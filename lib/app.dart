@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_web_libraries_in_flutter, deprecated_member_use
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 
 import 'data/venue_presets.dart';
 import 'services/analytics_service.dart';
+import 'services/embedded_mode.dart';
 import 'screens/charm_gallery_screen.dart';
 import 'screens/grape_practice_landing_screen.dart';
 import 'screens/home_screen.dart';
@@ -29,6 +33,16 @@ class TicketingApp extends StatelessWidget {
   Route<dynamic>? _onGenerateRoute(RouteSettings settings) {
     final uri = Uri.parse(settings.name ?? '/');
     final path = uri.path;
+
+    if (isEmbeddedMode) {
+      final currentPath = html.window.location.pathname;
+      if (path != currentPath) {
+        html.window.location.href = path;
+        return MaterialPageRoute(
+          builder: (_) => const SizedBox.shrink(),
+        );
+      }
+    }
 
     if (path == '/ticketing-charm') {
       return MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../services/embedded_mode.dart';
 import '../services/seo_service.dart';
 import '../widgets/ad_slot.dart';
 import '../widgets/breadcrumb.dart';
@@ -34,6 +35,8 @@ class GrapePracticeLandingScreen extends StatelessWidget {
       ],
     );
 
+    final embedded = isEmbeddedMode;
+
     return Title(
       title: _title,
       color: Theme.of(context).colorScheme.primary,
@@ -42,20 +45,54 @@ class GrapePracticeLandingScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const SiteHeader(),
-              const Breadcrumb(items: [
+              if (!embedded) const SiteHeader(),
+              if (!embedded) const Breadcrumb(items: [
                 BreadcrumbItem('홈', '/'),
                 BreadcrumbItem('포도알 연습'),
               ]),
-              _buildHeroContent(context),
+              if (embedded)
+                _buildEmbeddedContent(context)
+              else
+                _buildHeroContent(context),
               if (AdSlot.adsEnabled) const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: AdSlot(slotId: 'grape-practice-bottom'),
               ),
               _buildSeoSection(),
               const SizedBox(height: 8),
-              const SeoFooter(),
+              if (!embedded) const SeoFooter(),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmbeddedContent(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 720),
+          child: Center(
+            child: FilledButton.icon(
+              onPressed: () => _startDrill(context),
+              icon: const Icon(Icons.circle),
+              label: const Text(
+                '연습 시작하기',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+              ),
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF00897B),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
           ),
         ),
       ),
