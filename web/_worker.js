@@ -177,10 +177,7 @@ export default {
     const pathname = url.pathname;
 
     if (hasFileExtension(pathname)) {
-      const response = await env.ASSETS.fetch(request);
-      if (response.ok) {
-        return response;
-      }
+      return env.ASSETS.fetch(request);
     }
 
     const normalized = normalizePathname(pathname);
