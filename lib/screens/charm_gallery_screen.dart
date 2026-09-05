@@ -150,7 +150,7 @@ class _CharmGalleryScreenState extends State<CharmGalleryScreen> {
                     horizontalPadding,
                   ),
                 ),
-                SliverToBoxAdapter(
+                if (AdSlot.adsEnabled) SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: horizontalPadding,

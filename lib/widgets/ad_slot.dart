@@ -5,13 +5,13 @@ class AdSlot extends StatelessWidget {
   final String slotId;
 
   // AdSense 승인 후 true로 변경하면 광고 영역 활성화
-  static const _adsEnabled = false;
+  static const adsEnabled = false;
 
   const AdSlot({super.key, required this.slotId});
 
   @override
   Widget build(BuildContext context) {
-    if (!_adsEnabled) return const SizedBox.shrink();
+    if (!adsEnabled) return const SizedBox.shrink();
     return _buildPlaceholder();
   }
 

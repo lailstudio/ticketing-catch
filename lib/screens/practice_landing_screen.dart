@@ -49,7 +49,7 @@ class PracticeLandingScreen extends StatelessWidget {
                 BreadcrumbItem('실전 티켓팅 연습'),
               ]),
               _buildHeroContent(context),
-              const Padding(
+              if (AdSlot.adsEnabled) const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: AdSlot(slotId: 'practice-bottom'),
               ),

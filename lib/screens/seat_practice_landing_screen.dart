@@ -51,7 +51,7 @@ class SeatPracticeLandingScreen extends StatelessWidget {
                 BreadcrumbItem('좌석 집중 연습'),
               ]),
               _buildHeroContent(context),
-              const Padding(
+              if (AdSlot.adsEnabled) const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: AdSlot(slotId: 'seat-practice-bottom'),
               ),

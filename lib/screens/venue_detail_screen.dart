@@ -82,7 +82,7 @@ class VenueDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
+                  if (AdSlot.adsEnabled) Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: screenWidth > 800 ? 48 : 20,
                       vertical: 10,

@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buildHero(context, screenWidth),
                 _buildPracticeModeCards(context, screenWidth),
                 _buildVenueGrid(context, screenWidth),
-                Padding(
+                if (AdSlot.adsEnabled) Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: screenWidth > 800 ? 48 : 20,
                     vertical: 20,
