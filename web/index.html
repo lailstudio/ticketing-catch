@@ -16,6 +16,18 @@
   -->
   <base href="$FLUTTER_BASE_HREF">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGHL80T4B8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZGHL80T4B8');
+    function sendPageView(pagePath) {
+      gtag('config', 'G-ZGHL80T4B8', { page_path: pagePath });
+    }
+  </script>
+
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 배치 기반 연습.">

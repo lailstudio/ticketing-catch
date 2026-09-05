@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'data/venue_presets.dart';
+import 'services/analytics_service.dart';
 import 'screens/charm_gallery_screen.dart';
 import 'screens/grape_practice_landing_screen.dart';
 import 'screens/home_screen.dart';
@@ -20,6 +21,7 @@ class TicketingApp extends StatelessWidget {
           seedColor: const Color(0xFF5C2D91),
         ),
       ),
+      navigatorObservers: [AnalyticsRouteObserver()],
       onGenerateRoute: _onGenerateRoute,
     );
   }
