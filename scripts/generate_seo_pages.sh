@@ -9,7 +9,7 @@ if [ ! -f "$BUILD_DIR/flutter_bootstrap.js" ]; then
 fi
 
 # --- 1. Create flutter_bootstrap_embedded.js ---
-CONFIG_LINE=$(grep -n '_flutter.buildConfig' "$BUILD_DIR/flutter_bootstrap.js" | head -1 | cut -d: -f1)
+CONFIG_LINE=$(grep -n '_flutter\.buildConfig *=' "$BUILD_DIR/flutter_bootstrap.js" | head -1 | cut -d: -f1)
 head -n "$CONFIG_LINE" "$BUILD_DIR/flutter_bootstrap.js" > "$BUILD_DIR/flutter_bootstrap_embedded.js"
 
 cat >> "$BUILD_DIR/flutter_bootstrap_embedded.js" << 'EMBEDDED_LOAD'
