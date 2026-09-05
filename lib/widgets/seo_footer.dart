@@ -53,9 +53,20 @@ class SeoFooter extends StatelessWidget {
                     style: TextStyle(fontSize: 12, color: Colors.grey[400]),
                   ),
                   const SizedBox(height: 12),
-                  const _ExternalFooterLink(
-                    label: '개인정보처리방침',
-                    url: 'https://lailstudio.github.io/privacy.html',
+                  Wrap(
+                    spacing: 16,
+                    runSpacing: 8,
+                    alignment: WrapAlignment.center,
+                    children: const [
+                      _ExternalFooterLink(
+                        label: '개인정보처리방침',
+                        url: 'https://lailstudio.github.io/privacy.html',
+                      ),
+                      _ExternalFooterLink(
+                        label: '문의: lailstudio.app@gmail.com',
+                        url: 'mailto:lailstudio.app@gmail.com',
+                      ),
+                    ],
                   ),
                 ],
               ),
