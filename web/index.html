@@ -18,18 +18,50 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Ticketing practice simulator">
+  <meta name="description" content="실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 배치 기반 연습.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="ticketing">
+  <meta name="apple-mobile-web-app-title" content="티켓팅캐치">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>ticketing</title>
+  <title>티켓팅캐치 | 실전 티켓팅 · 좌석 집중 연습</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="티켓팅캐치 | 실전 티켓팅 · 좌석 집중 연습">
+  <meta property="og:description" content="실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 배치 기반 연습.">
+  <meta property="og:url" content="https://lailmoa.com/">
+  <meta property="og:site_name" content="티켓팅캐치">
+  <meta property="og:image" content="https://lailmoa.com/ticketingcatch-og.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="티켓팅캐치 | 실전 티켓팅 · 좌석 집중 연습">
+  <meta name="twitter:description" content="실전처럼 티켓팅을 연습하세요. 대기열, CAPTCHA, 좌석 선택까지 주요 공연장 좌석 배치 기반 연습.">
+  <meta name="twitter:image" content="https://lailmoa.com/ticketingcatch-og.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://lailmoa.com/">
+
+  <!-- SPA redirect handler for GitHub Pages -->
+  <script>
+    (function(l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&');
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location));
+  </script>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>

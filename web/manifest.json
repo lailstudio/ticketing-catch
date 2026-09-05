@@ -1,11 +1,11 @@
 {
-    "name": "ticketing",
-    "short_name": "ticketing",
+    "name": "티켓팅캐치",
+    "short_name": "티켓팅캐치",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Ticketing practice simulator",
+    "description": "실전 감각을 키우는 티켓팅 연습 서비스",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

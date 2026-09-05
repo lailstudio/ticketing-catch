@@ -1,41 +1,78 @@
-class Venue {
+import 'dart:ui';
+
+class VenueData {
   final String id;
   final String name;
-  final List<Section> sections;
+  final List<GradeInfo> grades;
+  final List<VenueSection> sections;
 
-  const Venue({
+  const VenueData({
     required this.id,
     required this.name,
+    required this.grades,
     required this.sections,
   });
+
+  GradeInfo gradeById(String id) =>
+      grades.firstWhere((g) => g.id == id);
+
+  List<VenueSection> sectionsByFloor(String floor) =>
+      sections.where((s) => s.floor == floor).toList();
+
+  List<String> get floors =>
+      sections.map((s) => s.floor).toSet().toList();
 }
 
-class Section {
+class GradeInfo {
   final String id;
-  final String name;
-  final int? floor;
-  final List<Seat> seats;
+  final String label;
+  final int colorValue;
+  final int price;
 
-  const Section({
+  const GradeInfo({
     required this.id,
-    required this.name,
-    this.floor,
-    required this.seats,
+    required this.label,
+    required this.colorValue,
+    required this.price,
+  });
+
+  Color get color => Color(colorValue);
+}
+
+class VenueSection {
+  final String id;
+  final String number;
+  final String gradeId;
+  final String floor;
+  final double x;
+  final double y;
+  final double w;
+  final double h;
+  final double rotation;
+  final List<SectionRowDef> rows;
+
+  const VenueSection({
+    required this.id,
+    required this.number,
+    required this.gradeId,
+    required this.floor,
+    required this.x,
+    required this.y,
+    required this.w,
+    required this.h,
+    this.rotation = 0,
+    required this.rows,
   });
 }
 
-class Seat {
-  final String id;
-  final int row;
-  final int number;
-  final double x;
-  final double y;
+class SectionRowDef {
+  final int rowNumber;
+  final int seatCount;
+  final int startOffset;
 
-  const Seat({
-    required this.id,
-    required this.row,
-    required this.number,
-    required this.x,
-    required this.y,
+  const SectionRowDef({
+    required this.rowNumber,
+    required this.seatCount,
+    this.startOffset = 0,
   });
 }

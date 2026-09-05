@@ -1,9 +1,9 @@
 enum PracticeStage {
   ready,
   waiting,
-  schedule,
   captcha,
-  seatMap,
-  seatSelect,
-  result,
+  section,
+  seat,
+  booking,
+  completed,
 }
