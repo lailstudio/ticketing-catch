@@ -159,6 +159,7 @@ function injectSeo(html, seo) {
 }
 
 const STATIC_HTML_PAGES = {
+  '/': '/_home/index.html',
   '/practice': '/practice/index.html',
   '/grape-practice': '/grape-practice/index.html',
 };

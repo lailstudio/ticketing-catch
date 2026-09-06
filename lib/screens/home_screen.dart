@@ -6,6 +6,7 @@ import '../models/practice_config.dart';
 import '../screens/grape_drill_screen.dart';
 import '../screens/queue_screen.dart';
 import '../screens/venue_map_screen.dart';
+import '../services/embedded_mode.dart';
 import '../services/seo_service.dart';
 import '../services/time_tracker.dart';
 import '../widgets/ad_slot.dart';
@@ -80,11 +81,12 @@ class _HomeScreenState extends State<HomeScreen> {
         body: LayoutBuilder(
           builder: (context, constraints) {
             final screenWidth = constraints.maxWidth;
+            final embedded = isEmbeddedMode;
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  const SiteHeader(),
-                  _buildHero(context, screenWidth),
+                  if (!embedded) const SiteHeader(),
+                  if (!embedded) _buildHero(context, screenWidth),
                 _buildPracticeModeCards(context, screenWidth),
                 _buildVenueGrid(context, screenWidth),
                 if (AdSlot.adsEnabled) Padding(
@@ -96,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 _buildSeoSection(screenWidth),
                 const SizedBox(height: 8),
-                const SeoFooter(),
+                if (!embedded) const SeoFooter(),
               ],
             ),
           );
